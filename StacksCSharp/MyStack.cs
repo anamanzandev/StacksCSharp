@@ -1,8 +1,10 @@
+using System.Text;
+
 namespace StacksCSharp
 {
     public class MyStack 
     {
-        public Node Top { get; private set; }
+        private Node? Top { get; set; }
         public int Length { get; private set; }
 
         public MyStack()
@@ -42,6 +44,22 @@ namespace StacksCSharp
                 throw new Exception("There are no elements in the stack.");
             }
             return Top.Element;
+        }
+
+        public override string ToString()
+        {
+            var pointer = Top;
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Start of Stack");
+            while (pointer != null)
+            {
+                sb.AppendLine(pointer.Element.ToString());
+                pointer = pointer.Next;
+            }
+            sb.AppendLine("End of Stack");
+            sb.AppendLine("");
+
+            return sb.ToString();
         }
     }
 }
